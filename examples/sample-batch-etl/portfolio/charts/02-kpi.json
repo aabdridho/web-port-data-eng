@@ -1,0 +1,33 @@
+{
+  "id": "rows-loaded",
+  "type": "kpi",
+  "title": "Rows loaded per run",
+  "source": {
+    "table": "ops.dag_runs"
+  },
+  "y": {
+    "field": "value"
+  },
+  "series": [
+    {
+      "name": "Rows",
+      "color": "accent",
+      "data": [
+        {
+          "label": "Avg / run",
+          "value": 128400,
+          "unit": "rows"
+        },
+        {
+          "label": "Runs / month",
+          "value": 30
+        },
+        {
+          "label": "Success rate",
+          "value": 99.2,
+          "unit": "%"
+        }
+      ]
+    }
+  ]
+}

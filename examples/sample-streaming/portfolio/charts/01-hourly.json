@@ -1,0 +1,120 @@
+{
+  "id": "events-hourly",
+  "type": "area",
+  "title": "[Event] stream \u2014 rolling 24h",
+  "source": {
+    "table": "stream.events_hourly"
+  },
+  "x": {
+    "field": "hour",
+    "label": "Hour"
+  },
+  "y": {
+    "field": "events",
+    "label": "Events (k)"
+  },
+  "series": [
+    {
+      "name": "Events",
+      "color": "teal",
+      "data": [
+        {
+          "hour": "00:00",
+          "events": 15
+        },
+        {
+          "hour": "01:00",
+          "events": 19
+        },
+        {
+          "hour": "02:00",
+          "events": 24
+        },
+        {
+          "hour": "03:00",
+          "events": 31
+        },
+        {
+          "hour": "04:00",
+          "events": 40
+        },
+        {
+          "hour": "05:00",
+          "events": 34
+        },
+        {
+          "hour": "06:00",
+          "events": 43
+        },
+        {
+          "hour": "07:00",
+          "events": 52
+        },
+        {
+          "hour": "08:00",
+          "events": 62
+        },
+        {
+          "hour": "09:00",
+          "events": 70
+        },
+        {
+          "hour": "10:00",
+          "events": 62
+        },
+        {
+          "hour": "11:00",
+          "events": 67
+        },
+        {
+          "hour": "12:00",
+          "events": 71
+        },
+        {
+          "hour": "13:00",
+          "events": 73
+        },
+        {
+          "hour": "14:00",
+          "events": 74
+        },
+        {
+          "hour": "15:00",
+          "events": 58
+        },
+        {
+          "hour": "16:00",
+          "events": 56
+        },
+        {
+          "hour": "17:00",
+          "events": 52
+        },
+        {
+          "hour": "18:00",
+          "events": 59
+        },
+        {
+          "hour": "19:00",
+          "events": 56
+        },
+        {
+          "hour": "20:00",
+          "events": 38
+        },
+        {
+          "hour": "21:00",
+          "events": 35
+        },
+        {
+          "hour": "22:00",
+          "events": 24
+        },
+        {
+          "hour": "23:00",
+          "events": 25
+        }
+      ]
+    }
+  ]
+}

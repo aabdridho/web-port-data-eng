@@ -1,0 +1,14 @@
+{
+  "slug": "sample-batch-etl",
+  "name": "[Project name 1]",
+  "kind": "BATCH ETL",
+  "year": 2026,
+  "stack": [
+    "Airflow",
+    "dbt",
+    "BigQuery"
+  ],
+  "summary": "Sample project \u2014 replace with a one-line problem \u2192 solution summary.",
+  "order": 1,
+  "featured": true
+}

@@ -1,0 +1,23 @@
+/* Satu-satunya sumber warna & ukuran. Revisi desain cukup di file ini. (Requirement.md §6) */
+:root {
+  --bg: #0c0f14;
+  --surface: #131820;
+  --surface-2: #1a2130;
+  --line: #222b38;
+  --line-strong: #2c3646;
+  --fg: #e7e9ee;
+  --fg-2: #b4bac6;
+  --muted: #8a93a3;
+  --accent: #a9b8f5;
+  --accent-hover: #cad4fa;
+  --teal: #8ccfd8;
+  --sage: #9ed9ae;
+  --neutral: #3a4256;
+  --chart-neutral: #6b7690; /* lolos validasi CVD terhadap --accent (ΔE 22,7) */
+  --grid: #1e2632;
+  --heat-0: #1e2632;
+  --heat-1: #262c45;
+  --heat-2: #3f4a7a;
+  --heat-3: #6e7dbc;
+  --heat-4: #a9b8f5;
+}

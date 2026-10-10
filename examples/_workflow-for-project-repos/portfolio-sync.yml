@@ -1,0 +1,22 @@
+# Salin file ini ke SETIAP repo project sebagai .github/workflows/portfolio-sync.yml
+# lalu tambahkan secret VERCEL_DEPLOY_HOOK di repo tersebut.
+# Efek: setiap kali isi folder portfolio/ berubah di main, website ikut rebuild.
+name: Sync portfolio website
+
+on:
+  push:
+    branches: [main]
+    paths: ['portfolio/**']
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Rebuild website portofolio
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: curl -fsS -X POST "$HOOK" > /dev/null

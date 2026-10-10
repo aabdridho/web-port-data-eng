@@ -1,0 +1,14 @@
+{
+  "slug": "sample-streaming",
+  "name": "[Project name 2]",
+  "kind": "STREAMING",
+  "year": 2026,
+  "stack": [
+    "Kafka",
+    "Spark",
+    "PostgreSQL"
+  ],
+  "summary": "Sample project \u2014 replace with a one-line problem \u2192 solution summary.",
+  "order": 2,
+  "featured": true
+}

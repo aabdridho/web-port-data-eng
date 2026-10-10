@@ -1,0 +1,126 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/layout/Nav.astro';
+import Footer from '../components/layout/Footer.astro';
+import Icon from '../components/Icon.astro';
+import Bento from '../components/bento/Bento.astro';
+import ProjectShowcase from '../components/projects/ProjectShowcase';
+import ContactForm from '../components/contact/ContactForm';
+import { site } from '../data/site.config';
+import { isSample, projects } from '../lib/data';
+
+const h2 = 'mt-3 text-[40px] font-bold leading-[1.05] sm:text-[56px]';
+---
+
+<Base>
+  <Nav slot="nav" />
+
+  <header class="pb-14 pt-12 sm:pt-[72px]">
+    <div class="inline-flex items-center gap-2.5 rounded-full border border-line-strong px-3.5 py-2 text-sm text-fg-2">
+      <span
+        class:list={['h-2 w-2 rounded-full', site.status.available ? 'pulse-dot bg-sage' : 'bg-muted']}
+        aria-hidden="true"
+      ></span>
+      {site.status.label}
+    </div>
+    <h1 class="mt-7 text-[48px] font-bold leading-[1.02] tracking-[-1px] sm:text-[88px]">
+      Hi, I’m {site.name}.<br />
+      <span class="italic text-accent">A {site.role.toLowerCase()}.</span>
+    </h1>
+    <p class="mt-6 max-w-[620px] text-xl text-fg-2">{site.description}</p>
+    <div class="mt-9 flex flex-wrap gap-3">
+      <a
+        href="#contact"
+        class="rounded-xl bg-accent px-[22px] py-3.5 font-semibold text-bg no-underline hover:bg-accent-hover hover:text-bg"
+      >
+        Start a project
+      </a>
+      <a
+        href="#projects"
+        class="rounded-xl border border-line-strong px-[22px] py-3.5 text-fg no-underline hover:text-fg hover:border-muted"
+      >
+        See my work ↓
+      </a>
+      <a
+        href={site.social.github}
+        aria-label="GitHub"
+        class="flex items-center rounded-xl border border-line-strong p-3.5 text-fg-2 hover:text-fg"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <Icon name="github" />
+      </a>
+      <a
+        href={site.social.linkedin}
+        aria-label="LinkedIn"
+        class="flex items-center rounded-xl border border-line-strong p-3.5 text-fg-2 hover:text-fg"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <Icon name="linkedin" />
+      </a>
+    </div>
+  </header>
+
+  <Bento />
+
+  <section id="projects" class="scroll-mt-6 pb-28" aria-labelledby="projects-title">
+    <div class="eyebrow !text-accent">02 — PROJECTS</div>
+    <h2 id="projects-title" class={h2}>
+      Data, processed &amp; <span class="italic">visualized</span>
+    </h2>
+    <p class="mb-10 mt-4 max-w-[640px] text-fg-2">
+      Every chart below is rendered from output files in my GitHub repos — open a project to see the result of its
+      pipeline.
+    </p>
+    <ProjectShowcase
+      client:visible
+      projects={projects}
+      allReposUrl={`${site.social.github}?tab=repositories`}
+      sample={isSample}
+    />
+  </section>
+
+  <section id="services" class="scroll-mt-6 pb-28" aria-labelledby="services-title">
+    <div class="eyebrow !text-accent">03 — SERVICES</div>
+    <h2 id="services-title" class={`${h2} mb-10`}>
+      How I can <span class="italic">help</span>
+    </h2>
+    <ul class="m-0 grid list-none grid-cols-1 gap-4 p-0 sm:grid-cols-2 lg:grid-cols-4">
+      {site.services.map((s, i) => (
+        <li class="card flex flex-col gap-2.5 p-6">
+          <span class="eyebrow">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="m-0 text-[19px] font-semibold">{s.t}</h3>
+          <p class="m-0 text-[15px] text-fg-2">{s.d}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section id="contact" class="scroll-mt-6 pb-28" aria-labelledby="contact-title">
+    <div class="card flex flex-wrap gap-12 rounded-[28px] px-6 py-10 sm:px-8 sm:py-12">
+      <div class="min-w-0 flex-[1_1_320px]">
+        <div class="eyebrow !text-accent">04 — CONTACT</div>
+        <h2 id="contact-title" class="mb-4 mt-3 text-[40px] font-bold leading-[1.05] sm:text-[52px]">
+          Got data that needs <span class="italic text-accent">taming?</span>
+        </h2>
+        <p class="m-0 text-fg-2">
+          Tell me about your sources, your goals and your timeline. I reply within 1–2 business days.
+        </p>
+        <div class="mt-7 flex flex-col gap-2.5 text-[15px]">
+          <a href={`mailto:${site.email}`} class="no-underline">
+            {site.email}
+          </a>
+          <span class="text-muted">
+            {site.location.city.replace(', ID', '')}, {site.location.country} · UTC+7
+          </span>
+        </div>
+      </div>
+      <div class="min-w-0 flex-[2_1_420px]">
+        <ContactForm client:visible siteKey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY} email={site.email} />
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Base>

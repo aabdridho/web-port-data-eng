@@ -1,0 +1,13 @@
+{
+  "slug": "sample-data-quality",
+  "name": "[Project name 3]",
+  "kind": "DATA QUALITY",
+  "year": 2026,
+  "stack": [
+    "dbt tests",
+    "Great Expectations"
+  ],
+  "summary": "Sample project \u2014 replace with a one-line problem \u2192 solution summary.",
+  "order": 3,
+  "featured": true
+}

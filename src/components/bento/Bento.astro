@@ -1,0 +1,103 @@
+---
+import { site } from '../../data/site.config';
+import { siteData } from '../../lib/data';
+
+const pairs = [
+  [site.pipeline[0], site.pipeline[1]],
+  [site.pipeline[2], site.pipeline[3]],
+] as const;
+const weeks = siteData.contributions;
+const cells = weeks.flatMap((w) => w.days);
+const total = cells.filter((l) => l > 0).length;
+---
+
+<section aria-label="Overview" class="grid grid-cols-1 gap-4 pb-24 sm:grid-cols-2 lg:grid-cols-4">
+  <!-- Live pipeline (F2.1) -->
+  <div class="card flex flex-col gap-5 p-7 sm:col-span-2 lg:row-span-2">
+    <div class="flex items-center justify-between">
+      <span class="eyebrow">LIVE PIPELINE</span>
+      <span class="font-mono text-[13px] text-sage">● running</span>
+    </div>
+    <div class="flex grow flex-col justify-center gap-3.5">
+      {pairs.map(([a, b], i) => (
+        <div class="flex items-center gap-3">
+          <div class="min-w-24 rounded-xl border border-line-strong px-3.5 py-3 text-center">
+            <div class="font-mono text-xs text-muted">{a.stage}</div>
+            <div class="font-semibold">{a.tool}</div>
+          </div>
+          <div class="relative h-0.5 grow overflow-hidden bg-line-strong" aria-hidden="true">
+            <div
+              class:list={['packet h-0.5 w-[30%]', i === 0 ? 'bg-accent' : 'bg-teal']}
+              style={i ? 'animation-delay:.8s' : undefined}
+            />
+          </div>
+          <div
+            class:list={[
+              'min-w-24 rounded-xl border px-3.5 py-3 text-center',
+              i === 1 ? 'border-accent' : 'border-line-strong',
+            ]}
+          >
+            <div class:list={['font-mono text-xs', i === 1 ? 'text-accent' : 'text-muted']}>{b.stage}</div>
+            <div class="font-semibold">{b.tool}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+    <p class="m-0 text-fg-2">From raw sources to analytics-ready models — orchestrated, tested and documented.</p>
+  </div>
+
+  <!-- Location (F2.2) -->
+  <div class="card p-6">
+    <div class="eyebrow">LOCATION</div>
+    <div class="mt-3 text-[32px] font-bold leading-tight">{site.location.city}</div>
+    <div class="text-sm text-muted">{site.location.detail}</div>
+  </div>
+
+  <!-- GitHub activity (F2.3) -->
+  <div class="card p-6">
+    <div class="eyebrow">GITHUB ACTIVITY</div>
+    <div
+      class="mt-4 grid max-w-[300px] auto-cols-fr grid-flow-col grid-rows-7 gap-1"
+      role="img"
+      aria-label={`GitHub contributions over the last ${weeks.length} weeks: active on ${total} days`}
+    >
+      {cells.map((lvl, i) => (
+        <span
+          class="heat-cell aspect-square rounded-[3px]"
+          style={`background:var(--heat-${lvl});animation-delay:${(i * 0.012).toFixed(3)}s`}
+        />
+      ))}
+    </div>
+    <div class="mt-3 text-[13px] text-muted">
+      {siteData.source === 'github'
+        ? `Last ${weeks.length} weeks · GitHub API`
+        : 'Sample pattern · connect GitHub token'}
+    </div>
+  </div>
+
+  <!-- Tech stack (F2.4) -->
+  <div class="card p-6 sm:col-span-2">
+    <div class="eyebrow">TECH STACK</div>
+    <ul class="m-0 mt-4 flex list-none flex-wrap gap-2 p-0">
+      {site.stack.map((s) => (
+        <li class="rounded-full border border-line-strong px-3 py-1.5 font-mono text-[13px] text-[#d3d7de]">{s}</li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  @keyframes cell-pop {
+    from {
+      opacity: 0;
+      transform: scale(0);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  .heat-cell {
+    animation: cell-pop 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+</style>

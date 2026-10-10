@@ -1,0 +1,57 @@
+---
+import { site } from '../../data/site.config';
+import { siteData } from '../../lib/data';
+
+const synced = new Date(siteData.lastSyncedAt).toLocaleDateString('en-GB', {
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+});
+const home = Astro.url.pathname === '/' ? '' : '/';
+const linkCls = 'text-[#d3d7de] no-underline hover:text-fg';
+---
+
+<footer class="border-t border-line pb-10 pt-12">
+  <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr]">
+    <div>
+      <div class="text-[28px] font-bold">{site.fullName}</div>
+      <p class="mt-2 max-w-[320px] text-muted">{site.tagline}</p>
+    </div>
+    <div class="flex flex-col gap-2">
+      <span class="eyebrow">SITE</span>
+      <a href={`${home}#projects`} class={linkCls}>
+        Projects
+      </a>
+      <a href={`${home}#services`} class={linkCls}>
+        Services
+      </a>
+      <a href={`${home}#contact`} class={linkCls}>
+        Contact
+      </a>
+    </div>
+    <div class="flex flex-col gap-2">
+      <span class="eyebrow">ELSEWHERE</span>
+      <a href={site.social.github} class={linkCls} rel="noopener noreferrer" target="_blank">
+        GitHub
+      </a>
+      <a href={site.social.linkedin} class={linkCls} rel="noopener noreferrer" target="_blank">
+        LinkedIn
+      </a>
+    </div>
+    <div class="flex flex-col gap-2">
+      <span class="eyebrow">THIS SITE</span>
+      <a
+        href={`https://github.com/${site.github}/${site.sourceRepo}`}
+        class={linkCls}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Source code
+      </a>
+      <span class="text-sm text-muted">Data synced {synced}</span>
+    </div>
+  </div>
+  <div class="mt-10 text-[13px] text-muted">
+    © {new Date().getFullYear()} {site.fullName}. All rights reserved.
+  </div>
+</footer>

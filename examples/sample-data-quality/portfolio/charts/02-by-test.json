@@ -1,0 +1,40 @@
+{
+  "id": "by-test",
+  "type": "progress",
+  "title": "Pass rate by test type",
+  "source": {
+    "path": "target/run_results.json"
+  },
+  "x": {
+    "field": "test"
+  },
+  "y": {
+    "field": "rate",
+    "unit": "%",
+    "max": 100
+  },
+  "series": [
+    {
+      "name": "Pass rate",
+      "color": "sage",
+      "data": [
+        {
+          "test": "not_null",
+          "rate": 96
+        },
+        {
+          "test": "unique",
+          "rate": 91
+        },
+        {
+          "test": "accepted_values",
+          "rate": 84
+        },
+        {
+          "test": "relationships",
+          "rate": 72
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "id": "pass-rate",
+  "type": "ring",
+  "title": "Tests passed",
+  "source": {
+    "path": "target/run_results.json"
+  },
+  "y": {
+    "field": "value",
+    "unit": "%",
+    "max": 100
+  },
+  "series": [
+    {
+      "name": "Passed",
+      "color": "sage",
+      "data": [
+        {
+          "label": "Passed",
+          "value": 90
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+---
+import { site } from '../../data/site.config';
+const home = Astro.url.pathname === '/' ? '' : '/';
+---
+
+<nav aria-label="Main" class="flex flex-wrap items-center justify-between gap-4 py-7">
+  <a href="/" class="text-[28px] font-bold text-fg no-underline hover:text-fg">
+    {site.name}
+    <span class="text-accent">.</span>
+  </a>
+  <div class="flex flex-wrap items-center gap-1 sm:gap-2">
+    <a href={`${home}#projects`} class="rounded-full px-3.5 py-2.5 text-fg-2 no-underline hover:text-fg">
+      Projects
+    </a>
+    <a href={`${home}#services`} class="rounded-full px-3.5 py-2.5 text-fg-2 no-underline hover:text-fg">
+      Services
+    </a>
+    <a
+      href={`${home}#contact`}
+      class="rounded-full bg-accent px-[18px] py-2.5 font-semibold text-bg no-underline hover:bg-accent-hover hover:text-bg"
+    >
+      Hire me
+    </a>
+  </div>
+</nav>

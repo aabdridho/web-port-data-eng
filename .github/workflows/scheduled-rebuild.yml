@@ -1,0 +1,21 @@
+name: Scheduled rebuild
+
+# Rebuild harian supaya data GitHub tetap segar (Requirement NF6).
+on:
+  schedule:
+    - cron: '0 19 * * *' # 19:00 UTC = 02:00 WIB
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Panggil Vercel Deploy Hook
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          test -n "$HOOK" || { echo "Secret VERCEL_DEPLOY_HOOK belum di-set"; exit 1; }
+          curl -fsS -X POST "$HOOK" > /dev/null
